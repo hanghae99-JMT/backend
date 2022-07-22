@@ -5,12 +5,13 @@
 ### Requirement
 
 ```
-Node js : 16.16
+Spring boot : 2.6.1
+Java JDK : 11
 ```
 
 ### Build & Run
 
 ```
-$ sudo npm i
-$ sudo npm start
+$ ./gradlew bootjar
+$ java -jar 프로젝트명.jar
 ```
