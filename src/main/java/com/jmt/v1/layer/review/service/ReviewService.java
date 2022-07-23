@@ -25,14 +25,14 @@ public class ReviewService {
     private final RestaurantRepository restaurantRepository;
 
     @Transactional
-    public void registerReview(ReviewRequestDto reviewRequestDto, Long restaurantId, Long userId) {
-        User user = userRepository.findByUser_id(userId);
-        Restaurant restaurant = restaurantRepository.findByRestaurant_id(restaurantId);
+    public void registerReview(ReviewRequestDto reviewRequestDto, String restaurantId, Long userId) {
+        User user = userRepository.findById(userId).get();
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
         Review review = new Review(reviewRequestDto,user,restaurant);
     }
 
     public List<ReviewResponseDto> getReviews(String userEmail) {
-        User user = userRepository.findByEmail(userEmail);
+        User user = userRepository.findByEmail(userEmail).get();
         List<Review> reviews = reviewRepository.findAllByUser(user);
 
         List<ReviewResponseDto> reviewResponseDtoList = new ArrayList<>();
