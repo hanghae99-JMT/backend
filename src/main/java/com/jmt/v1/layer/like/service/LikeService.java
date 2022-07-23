@@ -19,7 +19,7 @@ public class LikeService {
 
     //유저 객체를 이메일로 받아와서 그 객체를 넘겨줘야함
     public List<LikeResponseDto> getMyLikes(String userEmail) {
-        User user = userRepository.findByEmail(userEmail);
+        User user = userRepository.findByEmail(userEmail).get();
         List<Likes> likes = likeRepository.findAllByUser(user);
 
         List<LikeResponseDto> likeResponseDtoList = new ArrayList<>();
