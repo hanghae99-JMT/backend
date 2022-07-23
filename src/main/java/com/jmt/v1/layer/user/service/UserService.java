@@ -23,6 +23,10 @@ public class UserService implements UserDetailsService {
                 ()->new UsernameNotFoundException(email));
     }
 
+    public Boolean isUserSignUp(String email) throws UsernameNotFoundException {
+        return userRepository.existsByEmail(email);
+    }
+
 
     public User save(SignupRequestDto signupRequestDto){
         User user = signupRequestDto.toUser();
