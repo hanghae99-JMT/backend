@@ -1,5 +1,6 @@
 package com.jmt.v1.layer.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jmt.v1.layer.like.domain.Likes;
 import com.jmt.v1.layer.review.domain.Review;
 import lombok.AllArgsConstructor;
@@ -23,15 +24,18 @@ public class User implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+    @Column(unique = true)
     private String email;
     private String name;
     private String password;
     private boolean enabled;
     private GrantedAuthority authorityList;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Review> reviews;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Likes> likes;
 
