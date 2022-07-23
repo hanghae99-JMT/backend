@@ -16,7 +16,7 @@ public class SignupRequestDto {
     @Email
     private String id;
     private String username;
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$", message = "비밀번호 패턴 맞춰주쇼!")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$", message = "비밀번호 패턴 맞춰주쇼!")
     private String pw;
 
     public User toUser(){
