@@ -15,7 +15,7 @@ public class SigninResponseDto {
 
     public SigninResponseDto(User user, String token){
         this.id = user.getEmail();
-        this.username = user.getUsername();
+        this.username = user.getName();
         this.token = "Bearer " + token;
     }
 }
