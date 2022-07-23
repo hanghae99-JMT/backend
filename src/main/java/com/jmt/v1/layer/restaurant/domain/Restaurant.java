@@ -18,15 +18,15 @@ import java.util.Set;
 @Entity
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long restaurant_id;
+    private String restaurant_id;
     private String name;
     private String description;
     private String category;
     private String address;
     private Long likeCount;
-    private int map_x;
-    private int map_y;
+    private String map_x;
+    private String map_y;
+    private String url;
     private String thumbnail;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
