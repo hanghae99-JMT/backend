@@ -2,8 +2,11 @@ package com.jmt.v1.layer.restaurant.service;
 
 import com.jmt.v1.layer.restaurant.domain.Restaurant;
 import com.jmt.v1.layer.restaurant.domain.dto.response.RestaurantRankingResponseDto;
+import com.jmt.v1.layer.restaurant.domain.dto.response.RestaurantSearchResponseDto;
 import com.jmt.v1.layer.restaurant.infra.RestaurantRepository;
 import com.jmt.v1.util.SearchLocal.SearchLocalClient;
+import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +35,33 @@ public class RestaurantService {
         List<RestaurantRankingResponseDto> restaurantRankingResponseDtoList = changeListToDtoList(restaurantList);
 
         return restaurantRankingResponseDtoList;
+    }
+
+    private RestaurantSearchResponseDto makeRestaurantSearchResponseDto(SearchLocalResponseDto searchLocalResponseDto) {
+        int totalCount = searchLocalResponseDto.getMeta().getTotal_count();
+
+        List<RestaurantSearchResponseDto.Documents> documents = new ArrayList<>();
+
+        for(int i=0; i<searchLocalResponseDto.getDocuments().size(); i++) {
+            String rid = searchLocalResponseDto.getDocuments().get(i).getId();
+            Long like = 0L;
+
+            if(restaurantRepository.existsById(rid)) {
+                like = restaurantRepository.findById(rid).get().getLikeCount();
+            }
+
+            documents.add(new RestaurantSearchResponseDto.Documents(searchLocalResponseDto.getDocuments().get(i), like));
+        }
+
+        RestaurantSearchResponseDto restaurantSearchResponseDto = new RestaurantSearchResponseDto(totalCount, documents);
+
+        return restaurantSearchResponseDto;
+    }
+
+    public RestaurantSearchResponseDto getSearchResultList(String keyword, String x, String y, String page) {
+        SearchLocalRequestDto searchLocalRequestDto = new SearchLocalRequestDto(keyword, x, y, Integer.parseInt(page));
+        SearchLocalResponseDto searchLocalResponseDto = searchLocalClient.searchLocal(searchLocalRequestDto);
+
+        return makeRestaurantSearchResponseDto(searchLocalResponseDto);
     }
 }

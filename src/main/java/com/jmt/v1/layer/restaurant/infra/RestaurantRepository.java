@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, String> {
     List<Restaurant> findTop10ByOrderByLikeCountDesc();
+    boolean existsById(String rid);
 }
