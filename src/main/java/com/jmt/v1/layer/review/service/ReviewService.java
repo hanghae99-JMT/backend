@@ -4,6 +4,7 @@ import com.jmt.v1.layer.restaurant.domain.Restaurant;
 import com.jmt.v1.layer.restaurant.infra.RestaurantRepository;
 import com.jmt.v1.layer.review.domain.Review;
 import com.jmt.v1.layer.review.domain.dto.request.ReviewRequestDto;
+import com.jmt.v1.layer.review.domain.dto.response.MyReviewResponseDto;
 import com.jmt.v1.layer.review.domain.dto.response.ReviewResponseDto;
 import com.jmt.v1.layer.review.infra.ReviewRepository;
 import com.jmt.v1.layer.user.domain.User;
@@ -21,26 +22,47 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
-
     private final RestaurantRepository restaurantRepository;
 
-    @Transactional
-    public void registerReview(ReviewRequestDto reviewRequestDto, String restaurantId, Long userId) {
-        User user = userRepository.findById(userId).get();
-        Restaurant restaurant = restaurantRepository.findById(restaurantId).get();
-        Review review = new Review(reviewRequestDto,user,restaurant);
+
+    // 내가 작성한 리뷰 보기
+    public List<MyReviewResponseDto> getMyReviews(String email) {
+        User user = userRepository.findByEmail(email).get();
+
+        List<Review> reviews = reviewRepository.findAllByUser(user);
+
+        List<MyReviewResponseDto> myReviewResponseDtoList = new ArrayList<>();
+
+        for (Review review : reviews) {
+            myReviewResponseDtoList.add(new MyReviewResponseDto(review.getRestaurant().getName(),
+                    review.getText()));
+        }
+        return myReviewResponseDtoList;
     }
 
-    public List<ReviewResponseDto> getReviews(String userEmail) {
-        User user = userRepository.findByEmail(userEmail).get();
-        List<Review> reviews = reviewRepository.findAllByUser(user);
+    // 레스토랑 리뷰 보기
+    public List<ReviewResponseDto> getRestaurantReviews(String rid) {
+        Restaurant restaurant = restaurantRepository.findById(rid).get();
+
+        List<Review> reviews = reviewRepository.findAllByRestaurant(restaurant);
 
         List<ReviewResponseDto> reviewResponseDtoList = new ArrayList<>();
 
-        for(int i=0; i < reviews.size(); i++) {
-            reviewResponseDtoList.add(new ReviewResponseDto(reviews.get(i).getRestaurant().getName(),
-                    reviews.get(i).getText()));
+        for (Review review : reviews) {
+            reviewResponseDtoList.add(new ReviewResponseDto(review.getUser().getEmail(), review.getText()));
         }
+
         return reviewResponseDtoList;
+    }
+
+    @Transactional
+    public void registerReview(ReviewRequestDto reviewRequestDto,User user) {
+
+        Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid()).get();
+
+        Review review = new Review(restaurant,user,reviewRequestDto.getText());
+
+
+        reviewRepository.save(review);
     }
 }
