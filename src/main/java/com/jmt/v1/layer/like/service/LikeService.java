@@ -20,15 +20,17 @@ public class LikeService {
 
     //유저 객체를 이메일로 받아와서 그 객체를 넘겨줘야함
     public List<LikeResponseDto> getMyLikes(String userEmail) {
-        User user = userRepository.findByEmail(userEmail).get();
+        User user = userRepository.findByEmail(userEmail).orElseThrow(
+                ()-> new NullPointerException("이메일이 없습니다."));
         List<Likes> likes = likeRepository.findAllByUser(user);
 
         List<LikeResponseDto> likeResponseDtoList = new ArrayList<>();
 
         for (Likes like : likes) {
             likeResponseDtoList.add(
-                    new LikeResponseDto(like.getRestaurant().getRestaurant_id(), like.getRestaurant().getName(), like.getRestaurant().getCategory(),
-                            like.getRestaurant().getDescription(), like.getRestaurant().getAddress(), like.getRestaurant().getPhone(),
+                    new LikeResponseDto(
+                            like.getRestaurant().getRestaurant_id(), like.getRestaurant().getName(), like.getRestaurant().getCategory(),
+                            like.getRestaurant().getAddress(), like.getRestaurant().getPhone(),
                             like.getRestaurant().getLikeCount(), like.getRestaurant().getMap_x()
                             , like.getRestaurant().getMap_y(), like.getRestaurant().getUrl())
             );

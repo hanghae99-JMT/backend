@@ -42,7 +42,8 @@ public class ReviewService {
 
     // 레스토랑 리뷰 보기
     public List<ReviewResponseDto> getRestaurantReviews(String rid) {
-        Restaurant restaurant = restaurantRepository.findById(rid).get();
+        Restaurant restaurant = restaurantRepository.findById(rid).orElseThrow(
+                () -> new NullPointerException("레스토랑이 없습니다."));
 
         List<Review> reviews = reviewRepository.findAllByRestaurant(restaurant);
 
@@ -58,10 +59,10 @@ public class ReviewService {
     @Transactional
     public void registerReview(ReviewRequestDto reviewRequestDto,User user) {
 
-        Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid()).get();
+        Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid()).orElseThrow(
+                () -> new NullPointerException("레스토랑이 없습니다."));
 
         Review review = new Review(restaurant,user,reviewRequestDto.getText());
-
 
         reviewRepository.save(review);
     }

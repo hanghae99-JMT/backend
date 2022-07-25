@@ -9,7 +9,6 @@ public class LikeResponseDto {
     private String rid;
     private String name;
     private String category;
-    private String description;
     private String address;
     private String phone;
     private Long like;
