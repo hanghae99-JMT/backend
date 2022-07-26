@@ -26,9 +26,6 @@ public class LoggingFilter implements Filter {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper((HttpServletRequest) request);
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper((HttpServletResponse) response);
 
-        if(getUrls(requestWrapper).contains("/actuator")){
-            chain.doFilter(request, response);
-        }else{
             long start = System.currentTimeMillis();
             chain.doFilter(requestWrapper, responseWrapper);
             long end = System.currentTimeMillis();
@@ -45,7 +42,6 @@ public class LoggingFilter implements Filter {
                     (Object) getHeaders((HttpServletRequest) request),
                     getRequestBody(requestWrapper),
                     getResponseBody(responseWrapper));
-        }
     }
 
     private String getUrls(ContentCachingRequestWrapper request){
