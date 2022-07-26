@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String name;
     private String password;
     private boolean enabled;
+    @JsonIgnore
     private GrantedAuthority authorityList;
 
     @JsonIgnore
