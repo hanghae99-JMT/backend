@@ -19,7 +19,6 @@ public class Restaurant {
     @Id
     private String restaurant_id;
     private String name;
-    private String description;
     private String category;
     private String address;
     private String phone;

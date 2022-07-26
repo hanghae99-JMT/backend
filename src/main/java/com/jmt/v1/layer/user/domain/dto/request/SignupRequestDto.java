@@ -16,7 +16,7 @@ public class SignupRequestDto {
     @Email
     private String id;
     private String username;
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$", message = "비밀번호 패턴 맞춰주쇼!")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z@$!%*#?&]{8,16}$", message = "영문자와 특수문자(!@#$%^&*)포함 8-16자로 입력해주세요.")
     private String pw;
 
     public User toUser(){

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ReviewResponseDto {
-    private String id;
+public class MyReviewResponseDto {
+    private String name;
     private String text;
 }

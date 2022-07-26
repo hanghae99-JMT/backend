@@ -10,7 +10,6 @@ public class RestaurantRankingResponseDto {
     private String rid;
     private String name;
     private String category;
-    private String description;
     private String address;
     private String phone;
     private Long like;
@@ -22,7 +21,6 @@ public class RestaurantRankingResponseDto {
         this.rid = restaurant.getRestaurant_id();
         this.name = restaurant.getName();
         this.category = restaurant.getCategory();
-        this.description = restaurant.getDescription();
         this.address = restaurant.getAddress();
         this.phone = restaurant.getPhone();
         this.like = restaurant.getLikeCount();

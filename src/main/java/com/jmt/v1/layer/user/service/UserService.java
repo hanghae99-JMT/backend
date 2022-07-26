@@ -26,10 +26,10 @@ public class UserService implements UserDetailsService {
                 ()->new UsernameNotFoundException(email));
     }
 
-    public Boolean isUserSignUp(String email) throws UsernameNotFoundException {
-        return userRepository.existsByEmail(email);
+    public void isUserSignUp(String email) throws UsernameNotFoundException {
+        if(userRepository.existsByEmail(email))
+            throw new RuntimeException("중복된 이메일 입니다.");
     }
-
 
     public User save(SignupRequestDto signupRequestDto){
         User user = signupRequestDto.toUser();
