@@ -27,9 +27,11 @@ public class Review {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    public Review(ReviewRequestDto reviewRequestDto,User user,Restaurant restaurant) {
-        this.text = reviewRequestDto.getText();
-        this.user = user;
+
+    public Review(Restaurant restaurant,User user,String text) {
         this.restaurant = restaurant;
+        this.user = user;
+        this.text = text;
     }
+
 }

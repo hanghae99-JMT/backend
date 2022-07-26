@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class ReviewRequestDto {
-    private String name;
-    private String address;
+    private String rid;
     private String text;
 }
