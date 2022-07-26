@@ -36,7 +36,7 @@ public class LoggingFilter implements Filter {
                         "Request : {}\n" +
                         "Response : {}\n",
                 ((HttpServletRequest) request).getMethod(),
-                ((HttpServletRequest) request).getRequestURI(),
+                getUrls(requestWrapper),
                 responseWrapper.getStatus(),
                 (end - start) / 1000.0,
                 (Object) getHeaders((HttpServletRequest) request),
@@ -44,6 +44,15 @@ public class LoggingFilter implements Filter {
                 getResponseBody(responseWrapper));
     }
 
+    private String getUrls(ContentCachingRequestWrapper request){
+        String urls = request.getRequestURI();
+
+        if(request.getQueryString()!= null){
+            urls = urls + "?" + request.getQueryString();
+        }
+
+        return urls;
+    }
     private Map getHeaders(HttpServletRequest request) {
         Map headerMap = new HashMap<>();
 
