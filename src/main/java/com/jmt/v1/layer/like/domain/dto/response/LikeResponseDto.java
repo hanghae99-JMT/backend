@@ -15,4 +15,5 @@ public class LikeResponseDto {
     private String x;
     private String y;
     private String url;
+    private Integer like_flag;
 }

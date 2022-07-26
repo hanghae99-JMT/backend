@@ -32,7 +32,7 @@ public class LikeService {
                             like.getRestaurant().getRestaurant_id(), like.getRestaurant().getName(), like.getRestaurant().getCategory(),
                             like.getRestaurant().getAddress(), like.getRestaurant().getPhone(),
                             like.getRestaurant().getLikeCount(), like.getRestaurant().getMap_x()
-                            , like.getRestaurant().getMap_y(), like.getRestaurant().getUrl())
+                            , like.getRestaurant().getMap_y(), like.getRestaurant().getUrl(),1)
             );
         }
         return likeResponseDtoList;
