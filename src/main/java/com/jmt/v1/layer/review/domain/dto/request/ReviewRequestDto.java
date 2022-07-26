@@ -6,4 +6,12 @@ import lombok.Getter;
 public class ReviewRequestDto {
     private String rid;
     private String text;
+    private String name;
+    private String category;
+    private String address;
+    private String phone;
+    private Long likeCount;
+    private String x;
+    private String y;
+    private String url;
 }
