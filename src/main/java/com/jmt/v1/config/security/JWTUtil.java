@@ -12,7 +12,7 @@ public class JWTUtil {
 
     private static final String SECRET_KEY = "carrykim";
     private static final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY);
-    private static final long AUTH_TIME = 60 * 60;
+    private static final long AUTH_TIME = 60 * 60 * 60* 24 * 365;
 
     public static String getToken(User user){
         return JWT.create()
