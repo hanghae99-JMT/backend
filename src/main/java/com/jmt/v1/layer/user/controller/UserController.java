@@ -1,5 +1,6 @@
 package com.jmt.v1.layer.user.controller;
 
+import com.jmt.v1.config.logging.annotation.LogExecutionTime;
 import com.jmt.v1.layer.user.domain.User;
 import com.jmt.v1.layer.user.domain.dto.request.SignupRequestDto;
 import com.jmt.v1.layer.user.domain.dto.response.GetUserDataResponseDto;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/test")
+    @LogExecutionTime
     public String test(){
         return "test";
     }
@@ -40,9 +42,8 @@ public class UserController {
     public ResponseEntity checkSignUp(
             @PathVariable("id") @Email String id
     ){
-        Boolean isSignUp = userService.isUserSignUp(id);
-        if(isSignUp) return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        else return new ResponseEntity(HttpStatus.OK);
+        userService.isUserSignUp(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/api/user/token")

@@ -32,6 +32,16 @@ public class User implements UserDetails {
     @JsonIgnore
     private GrantedAuthority authorityList;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", authorityList=" + authorityList +
+                '}';
+    }
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Review> reviews;
