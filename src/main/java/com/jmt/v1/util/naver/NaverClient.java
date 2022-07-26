@@ -1,9 +1,9 @@
-package com.jmt.v1.naver;
+package com.jmt.v1.util.naver;
 
-import com.jmt.v1.naver.domain.dto.SearchImageRequestDto;
-import com.jmt.v1.naver.domain.dto.SearchImageResponseDto;
-import com.jmt.v1.naver.domain.dto.SearchLocalRequestDto;
-import com.jmt.v1.naver.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.util.naver.domain.dto.SearchImageRequestDto;
+import com.jmt.v1.util.naver.domain.dto.SearchImageResponseDto;
+import com.jmt.v1.util.naver.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.util.naver.domain.dto.SearchLocalResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
