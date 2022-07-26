@@ -1,8 +1,7 @@
-package com.jmt.v1.naver.domain.dto;
+package com.jmt.v1.util.naver.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;

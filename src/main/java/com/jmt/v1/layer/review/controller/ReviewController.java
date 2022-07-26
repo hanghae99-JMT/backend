@@ -25,7 +25,7 @@ public class ReviewController {
 
     // 가게 리뷰 보기
     @CrossOrigin("*")
-    @GetMapping("/api/review/{id}")
+    @GetMapping("/api/review")
     public List<ReviewResponseDto> getReviews(@RequestParam(name="rid", required = false, defaultValue = "") String rid) {
         return reviewService.getRestaurantReviews(rid);
     }
