@@ -1,5 +1,6 @@
 package com.jmt.v1.layer.user.controller;
 
+import com.jmt.v1.config.security.PasswordEncoder;
 import com.jmt.v1.layer.user.domain.User;
 import com.jmt.v1.layer.user.domain.dto.request.SignupRequestDto;
 import com.jmt.v1.layer.user.domain.dto.response.GetUserDataResponseDto;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
 
 @RestController
 @Validated
