@@ -27,7 +27,9 @@ public class ReviewService {
 
     // 내가 작성한 리뷰 보기
     public List<MyReviewResponseDto> getMyReviews(String email) {
-        User user = userRepository.findByEmail(email).get();
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new NullPointerException("작성한 리뷰가 없습니다.")
+        );
 
         List<Review> reviews = reviewRepository.findAllByUser(user);
 
@@ -56,6 +58,7 @@ public class ReviewService {
         return reviewResponseDtoList;
     }
 
+    // 레스토랑 리뷰 작성
     @Transactional
     public void registerReview(ReviewRequestDto reviewRequestDto,User user) {
 
