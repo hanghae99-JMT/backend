@@ -60,11 +60,13 @@ public class RestaurantService {
 
         for(SearchLocalResponseDto.SearchLocalDocument document : searchLocalDocumentList) {
             String rid = document.getId();
-            Restaurant restaurant = restaurantRepository.findById(rid).get();
+            Restaurant restaurant = new Restaurant();
             Long like = 0L;
 
             if(restaurantRepository.existsById(rid)) {
                 like = restaurantRepository.findById(rid).get().getLikeCount();
+
+                restaurant = restaurantRepository.findById(rid).get();
             }
 
             documents.add(new RestaurantSearchResponseDto.Documents(document, like, getLikeFlag(restaurant, user)));
