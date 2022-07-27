@@ -1,7 +1,8 @@
 package com.jmt.v1.layer.restaurant.domain;
 
-import com.jmt.v1.layer.like.domain.Likes;
+import com.jmt.v1.layer.like.domain.dto.request.LikeAddRequestDto;
 import com.jmt.v1.layer.review.domain.Review;
+import com.jmt.v1.layer.review.domain.dto.request.ReviewRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -18,20 +18,47 @@ import java.util.Set;
 @Entity
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long restaurant_id;
+    private String restaurant_id;
     private String name;
-    private String description;
     private String category;
     private String address;
+    private String phone;
     private Long likeCount;
-    private int map_x;
-    private int map_y;
+    private String map_x;
+    private String map_y;
+    private String url;
     private String thumbnail;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
     private List<Review> reviews;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
-    private List<Likes> likes;
+    public Restaurant(LikeAddRequestDto likeAddRequestDto) {
+        this.restaurant_id = likeAddRequestDto.getRid();
+        this.name = likeAddRequestDto.getName();
+        this.category = likeAddRequestDto.getCategory();
+        this.address = likeAddRequestDto.getAddress();
+        this.phone = likeAddRequestDto.getPhone();
+        this.likeCount = likeAddRequestDto.getLike();
+        this.map_x = likeAddRequestDto.getX();
+        this.map_y = likeAddRequestDto.getY();
+        this.url = likeAddRequestDto.getUrl();
+    }
+
+    public Restaurant(ReviewRequestDto reviewRequestDto) {
+        this.restaurant_id = reviewRequestDto.getRid();
+        this.name = reviewRequestDto.getName();
+        this.category = reviewRequestDto.getCategory();
+        this.address = reviewRequestDto.getAddress();
+        this.phone = reviewRequestDto.getPhone();
+        this.likeCount = reviewRequestDto.getLike();
+        this.map_x = reviewRequestDto.getX();
+        this.map_y = reviewRequestDto.getY();
+        this.url = reviewRequestDto.getUrl();
+    }
+
+    public Long increaseLikeCount() {
+        this.likeCount++;
+
+        return likeCount;
+    }
 }

@@ -14,6 +14,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(uniqueConstraints =
+        {@UniqueConstraint(name = "UniqueRestaurantUser", columnNames = { "restaurant_id", "user_id"})})
 public class Likes {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long like_id;
@@ -23,4 +25,9 @@ public class Likes {
     @ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
+
+    public Likes(User user, Restaurant restaurant) {
+        this.user = user;
+        this.restaurant = restaurant;
+    }
 }
