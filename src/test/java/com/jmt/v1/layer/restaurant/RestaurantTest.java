@@ -18,21 +18,21 @@ public class RestaurantTest {
         this.restaurantService = restaurantService;
     }
 
-    @Test
-    public void getRankingList() {
-        List<RestaurantRankingResponseDto> restaurantRankingResponseDtoList = restaurantService.getRankingList();
-
-        for(int i=0; i<restaurantRankingResponseDtoList.size(); i++) {
-            System.out.println(restaurantRankingResponseDtoList.get(i).getName());
-        }
-    }
-
-    @Test
-    public void getSearchResultList() {
-        RestaurantSearchResponseDto restaurantSearchResponseDto = restaurantService.getSearchResultList("갈비집", "1", "1", "1");
-
-        for(int i=0; i<restaurantSearchResponseDto.getSearchResult().size(); i++) {
-            System.out.println(restaurantSearchResponseDto.getSearchResult().get(i).getName());
-        }
-    }
+//    @Test
+//    public void getRankingList() {
+//        List<RestaurantRankingResponseDto> restaurantRankingResponseDtoList = restaurantService.getRankingList();
+//
+//        for(int i=0; i<restaurantRankingResponseDtoList.size(); i++) {
+//            System.out.println(restaurantRankingResponseDtoList.get(i).getName());
+//        }
+//    }
+//
+//    @Test
+//    public void getSearchResultList() {
+//        RestaurantSearchResponseDto restaurantSearchResponseDto = restaurantService.getSearchResultList("갈비집", "1", "1", "1");
+//
+//        for(int i=0; i<restaurantSearchResponseDto.getSearchResult().size(); i++) {
+//            System.out.println(restaurantSearchResponseDto.getSearchResult().get(i).getName());
+//        }
+//    }
 }

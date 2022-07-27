@@ -28,8 +28,9 @@ public class RestaurantSearchResponseDto {
         private String y;
         private String url;
         private String distance;
+        private int like_flag;
 
-        public Documents(SearchLocalResponseDto.SearchLocalDocument searchLocalDocument, Long like) {
+        public Documents(SearchLocalResponseDto.SearchLocalDocument searchLocalDocument, Long like, int like_flag) {
             this.rid = searchLocalDocument.getId();
             this.name = searchLocalDocument.getPlace_name();
             this.category = searchLocalDocument.getCategory_name();
@@ -40,6 +41,7 @@ public class RestaurantSearchResponseDto {
             this.y = searchLocalDocument.getY();
             this.url = searchLocalDocument.getPlace_url();
             this.distance = searchLocalDocument.getDistance();
+            this.like_flag = like_flag;
         }
     }
 }
