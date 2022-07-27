@@ -52,6 +52,12 @@ public class RestaurantService {
         return restaurantRankingResponseDtoList;
     }
 
+    private boolean checkPage(String page) {
+        int pageInt = Integer.parseInt(page);
+
+        return pageInt > 0 && pageInt < 10;
+    }
+
     private RestaurantSearchResponseDto makeRestaurantSearchResponseDto(User user, SearchLocalResponseDto searchLocalResponseDto) {
         int totalCount = searchLocalResponseDto.getMeta().getTotal_count();
         List<SearchLocalResponseDto.SearchLocalDocument> searchLocalDocumentList = searchLocalResponseDto.getDocuments();
@@ -79,6 +85,10 @@ public class RestaurantService {
     }
 
     public RestaurantSearchResponseDto getSearchResultList(User user, String keyword, String x, String y, String page) {
+        if(!checkPage(page)) {
+            throw new RuntimeException("존재하지 않는 페이지입니다.");
+        }
+
         SearchLocalRequestDto searchLocalRequestDto = new SearchLocalRequestDto(keyword, x, y, Integer.parseInt(page));
         SearchLocalResponseDto searchLocalResponseDto = searchLocalClient.searchLocal(searchLocalRequestDto);
 

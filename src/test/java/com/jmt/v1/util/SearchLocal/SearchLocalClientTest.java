@@ -17,7 +17,7 @@ public class SearchLocalClientTest {
 
     @Test
     public void searchLocalTest() {
-        SearchLocalRequestDto searchLocalRequestDto = new SearchLocalRequestDto("감자", "127.7265155", "37.8853782", 1);
+        SearchLocalRequestDto searchLocalRequestDto = new SearchLocalRequestDto("칼국수", "127.7265155", "37.8853782", 11);
 
         SearchLocalResponseDto result = searchLocalClient.searchLocal(searchLocalRequestDto);
 

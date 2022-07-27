@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 @NoArgsConstructor
 @Getter
 public class SearchLocalRequestDto {
@@ -14,7 +17,7 @@ public class SearchLocalRequestDto {
     private String y;
     private final int radius = 20000;
     private int page;
-    private final int size = 15;
+    private final int size = 5;
     private final String sort = "accuracy";
 
     public SearchLocalRequestDto(String query, String x, String y, int page) {
