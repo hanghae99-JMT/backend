@@ -9,6 +9,7 @@ import com.jmt.v1.layer.user.domain.User;
 import com.jmt.v1.util.SearchLocal.SearchLocalClient;
 import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalRequestDto;
 import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
+import io.sentry.spring.tracing.SentrySpan;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +76,7 @@ public class RestaurantService {
         return restaurantSearchResponseDto;
     }
 
+    @SentrySpan
     public RestaurantSearchResponseDto getSearchResultList(User user, String keyword, String x, String y, String page) {
         SearchLocalRequestDto searchLocalRequestDto = new SearchLocalRequestDto(keyword, x, y, Integer.parseInt(page));
         SearchLocalResponseDto searchLocalResponseDto = searchLocalClient.searchLocal(searchLocalRequestDto);

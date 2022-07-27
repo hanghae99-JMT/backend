@@ -26,24 +26,37 @@ public class LoggingFilter implements Filter {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper((HttpServletRequest) request);
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper((HttpServletResponse) response);
 
-        long start = System.currentTimeMillis();
-        chain.doFilter(requestWrapper, responseWrapper);
-        long end = System.currentTimeMillis();
+        if(getUrls(requestWrapper).contains("/actuator")){
+            chain.doFilter(request, response);
+        }else{
+            long start = System.currentTimeMillis();
+            chain.doFilter(requestWrapper, responseWrapper);
+            long end = System.currentTimeMillis();
 
-        log.info("\n" +
-                        "[REQUEST] {} - {} {} - {}\n" +
-                        "Headers : {}\n" +
-                        "Request : {}\n" +
-                        "Response : {}\n",
-                ((HttpServletRequest) request).getMethod(),
-                ((HttpServletRequest) request).getRequestURI(),
-                responseWrapper.getStatus(),
-                (end - start) / 1000.0,
-                (Object) getHeaders((HttpServletRequest) request),
-                getRequestBody(requestWrapper),
-                getResponseBody(responseWrapper));
+            log.info("\n" +
+                            "[REQUEST] {} - {} {} - {}\n" +
+                            "Headers : {}\n" +
+                            "Request : {}\n" +
+                            "Response : {}\n",
+                    ((HttpServletRequest) request).getMethod(),
+                    getUrls(requestWrapper),
+                    responseWrapper.getStatus(),
+                    (end - start) / 1000.0,
+                    (Object) getHeaders((HttpServletRequest) request),
+                    getRequestBody(requestWrapper),
+                    getResponseBody(responseWrapper));
+        }
     }
 
+    private String getUrls(ContentCachingRequestWrapper request){
+        String urls = request.getRequestURI();
+
+        if(request.getQueryString()!= null){
+            urls = urls + "?" + request.getQueryString();
+        }
+
+        return urls;
+    }
     private Map getHeaders(HttpServletRequest request) {
         Map headerMap = new HashMap<>();
 
