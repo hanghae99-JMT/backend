@@ -16,8 +16,9 @@ public class RestaurantRankingResponseDto {
     private String x;
     private String y;
     private String url;
+    private int like_flag;
 
-    public RestaurantRankingResponseDto(Restaurant restaurant) {
+    public RestaurantRankingResponseDto(Restaurant restaurant, int like_flag) {
         this.rid = restaurant.getRestaurant_id();
         this.name = restaurant.getName();
         this.category = restaurant.getCategory();
@@ -27,5 +28,6 @@ public class RestaurantRankingResponseDto {
         this.x = restaurant.getMap_x();
         this.y = restaurant.getMap_y();
         this.url = restaurant.getUrl();
+        this.like_flag = like_flag;
     }
 }

@@ -27,7 +27,7 @@ public class LikeController {
         return likeService.addLike(user, likeAddRequestDto);
     }
 
-    @GetMapping("/api/user/{id}/like")
+    @GetMapping("/api/user/{id}/likes")
     public List<LikeResponseDto> getMyLikes(@PathVariable("id") String userEmail) {
         return likeService.getMyLikes(userEmail);
     }
