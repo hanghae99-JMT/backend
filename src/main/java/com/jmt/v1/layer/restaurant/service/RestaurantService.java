@@ -60,16 +60,17 @@ public class RestaurantService {
 
         for(SearchLocalResponseDto.SearchLocalDocument document : searchLocalDocumentList) {
             String rid = document.getId();
-            Restaurant restaurant = new Restaurant();
             Long like = 0L;
 
             if(restaurantRepository.existsById(rid)) {
                 like = restaurantRepository.findById(rid).get().getLikeCount();
 
-                restaurant = restaurantRepository.findById(rid).get();
-            }
+                Restaurant restaurant = restaurantRepository.findById(rid).get();
 
-            documents.add(new RestaurantSearchResponseDto.Documents(document, like, getLikeFlag(restaurant, user)));
+                documents.add(new RestaurantSearchResponseDto.Documents(document, like, getLikeFlag(restaurant, user)));
+            } else {
+                documents.add(new RestaurantSearchResponseDto.Documents(document, like, 0));
+            }
         }
 
         RestaurantSearchResponseDto restaurantSearchResponseDto = new RestaurantSearchResponseDto(totalCount, documents);
