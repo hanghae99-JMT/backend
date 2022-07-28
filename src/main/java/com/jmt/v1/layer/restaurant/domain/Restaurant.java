@@ -2,6 +2,7 @@ package com.jmt.v1.layer.restaurant.domain;
 
 import com.jmt.v1.layer.like.domain.dto.request.LikeAddRequestDto;
 import com.jmt.v1.layer.review.domain.Review;
+import com.jmt.v1.layer.review.domain.dto.request.ReviewRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,6 +42,18 @@ public class Restaurant {
         this.map_x = likeAddRequestDto.getX();
         this.map_y = likeAddRequestDto.getY();
         this.url = likeAddRequestDto.getUrl();
+    }
+
+    public Restaurant(ReviewRequestDto reviewRequestDto) {
+        this.restaurant_id = reviewRequestDto.getRid();
+        this.name = reviewRequestDto.getName();
+        this.category = reviewRequestDto.getCategory();
+        this.address = reviewRequestDto.getAddress();
+        this.phone = reviewRequestDto.getPhone();
+        this.likeCount = reviewRequestDto.getLike();
+        this.map_x = reviewRequestDto.getX();
+        this.map_y = reviewRequestDto.getY();
+        this.url = reviewRequestDto.getUrl();
     }
 
     public Long increaseLikeCount() {

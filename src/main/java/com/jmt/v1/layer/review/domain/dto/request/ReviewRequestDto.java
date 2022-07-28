@@ -10,7 +10,7 @@ public class ReviewRequestDto {
     private String category;
     private String address;
     private String phone;
-    private Long likeCount;
+    private Long like;
     private String x;
     private String y;
     private String url;

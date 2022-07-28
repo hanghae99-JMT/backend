@@ -62,10 +62,10 @@ public class ReviewService {
     @Transactional
     public void registerReview(ReviewRequestDto reviewRequestDto,User user) {
 
-        Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid()).orElseThrow(
-                () -> new NullPointerException("레스토랑이 없습니다."));
+        Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid())
+                    .orElse(restaurantRepository.save(new Restaurant(reviewRequestDto)));
 
-        Review review = new Review(restaurant,user,reviewRequestDto.getText());
+        Review review = reviewRepository.save(new Review(restaurant,user,reviewRequestDto.getText()));
 
         reviewRepository.save(review);
     }
