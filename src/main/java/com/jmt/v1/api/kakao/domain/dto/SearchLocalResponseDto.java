@@ -1,4 +1,4 @@
-package com.jmt.v1.util.SearchLocal.domain.dto;
+package com.jmt.v1.api.kakao.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
