@@ -1,7 +1,7 @@
-package com.jmt.v1.util.naver;
+package com.jmt.v1.api.naver;
 
-import com.jmt.v1.util.naver.domain.dto.SearchLocalRequestDto;
-import com.jmt.v1.util.naver.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.api.naver.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.api.naver.domain.dto.SearchLocalResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

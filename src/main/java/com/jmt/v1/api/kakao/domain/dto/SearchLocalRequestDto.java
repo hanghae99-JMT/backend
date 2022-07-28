@@ -1,12 +1,9 @@
-package com.jmt.v1.util.SearchLocal.domain.dto;
+package com.jmt.v1.api.kakao.domain.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @NoArgsConstructor
 @Getter

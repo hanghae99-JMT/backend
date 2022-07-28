@@ -6,9 +6,9 @@ import com.jmt.v1.layer.restaurant.domain.dto.response.RestaurantRankingResponse
 import com.jmt.v1.layer.restaurant.domain.dto.response.RestaurantSearchResponseDto;
 import com.jmt.v1.layer.restaurant.infra.RestaurantRepository;
 import com.jmt.v1.layer.user.domain.User;
-import com.jmt.v1.util.SearchLocal.SearchLocalClient;
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalRequestDto;
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.api.kakao.KakaoClient;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final LikeRepository likeRepository;
-    private final SearchLocalClient searchLocalClient;
+    private final KakaoClient searchLocalClient;
 
     private int getLikeFlag(Restaurant restaurant, User user) {
         if(user == null) {

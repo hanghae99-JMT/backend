@@ -1,7 +1,7 @@
-package com.jmt.v1.util.SearchLocal;
+package com.jmt.v1.api.kakao;
 
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalRequestDto;
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -12,7 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Component
-public class SearchLocalClient {
+public class KakaoClient {
 
     @Value("${kakao.restapi.key}")
     private String kakaoRestApiKey;

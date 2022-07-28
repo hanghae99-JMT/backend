@@ -1,17 +1,17 @@
-package com.jmt.v1.util.SearchLocal;
+package com.jmt.v1.api.kakao;
 
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalRequestDto;
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalRequestDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class SearchLocalClientTest {
-    private final SearchLocalClient searchLocalClient;
+public class KakaoClientTest {
+    private final KakaoClient searchLocalClient;
 
     @Autowired
-    public SearchLocalClientTest(SearchLocalClient searchLocalClient) {
+    public KakaoClientTest(KakaoClient searchLocalClient) {
         this.searchLocalClient = searchLocalClient;
     }
 
