@@ -1,6 +1,6 @@
 package com.jmt.v1.layer.restaurant.domain.dto.response;
 
-import com.jmt.v1.util.SearchLocal.domain.dto.SearchLocalResponseDto;
+import com.jmt.v1.api.kakao.domain.dto.SearchLocalResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

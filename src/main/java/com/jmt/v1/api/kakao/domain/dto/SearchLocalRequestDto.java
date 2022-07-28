@@ -1,4 +1,4 @@
-package com.jmt.v1.util.SearchLocal.domain.dto;
+package com.jmt.v1.api.kakao.domain.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ public class SearchLocalRequestDto {
     private String y;
     private final int radius = 20000;
     private int page;
-    private final int size = 15;
+    private final int size = 5;
     private final String sort = "accuracy";
 
     public SearchLocalRequestDto(String query, String x, String y, int page) {
