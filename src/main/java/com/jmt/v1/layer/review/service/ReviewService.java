@@ -63,10 +63,8 @@ public class ReviewService {
     public void registerReview(ReviewRequestDto reviewRequestDto,User user) {
 
         Restaurant restaurant = restaurantRepository.findById(reviewRequestDto.getRid())
-                    .orElse(restaurantRepository.save(new Restaurant(reviewRequestDto)));
+                    .orElseGet(() -> new Restaurant(reviewRequestDto));
 
-        Review review = reviewRepository.save(new Review(restaurant,user,reviewRequestDto.getText()));
-
-        reviewRepository.save(review);
+        reviewRepository.save(new Review(restaurant,user,reviewRequestDto.getText()));
     }
 }
